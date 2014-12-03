@@ -26,7 +26,7 @@ end
 RSpec.configure do |config|
 
   config.include ActionDispatch::TestProcess
-  config.fixture_path = File.join(Ddr::Models::Engine.root, "spec", "fixtures")
+  config.fixture_path = File.join(Ddr::Batch::Engine.root, "spec", "fixtures")
   config.use_transactional_fixtures = true  
 
   # rspec-expectations config goes here. You can use an alternate
@@ -100,16 +100,6 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.clean
     ActiveFedora::Base.destroy_all
-    Ddr::Models.configure do |config|
-      config.external_file_store = Dir.mktmpdir
-      config.external_file_subpath_pattern = "--"
-    end
-  end
-
-  config.after(:suite) do
-    if Ddr::Models.external_file_store && Dir.exist?(Ddr::Models.external_file_store)
-      FileUtils.remove_entry_secure(Ddr::Models.external_file_store) 
-    end
   end
 
   config.after(:each) do
