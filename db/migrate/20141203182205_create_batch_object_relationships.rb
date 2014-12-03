@@ -1,6 +1,6 @@
 class CreateBatchObjectRelationships < ActiveRecord::Migration
   def up
-    unless table_exists?("batch_object_relationships") do
+    unless table_exists?("batch_object_relationships")
       create_table "batch_object_relationships" do |t|
         t.integer  "batch_object_id"
         t.string   "name"

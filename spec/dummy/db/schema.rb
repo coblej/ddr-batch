@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203162233) do
+ActiveRecord::Schema.define(version: 20141203182205) do
+
+  create_table "batch_object_datastreams", force: true do |t|
+    t.integer  "batch_object_id"
+    t.string   "operation"
+    t.string   "name"
+    t.text     "payload"
+    t.string   "payload_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "checksum"
+    t.string   "checksum_type"
+  end
+
+  create_table "batch_object_relationships", force: true do |t|
+    t.integer  "batch_object_id"
+    t.string   "name"
+    t.string   "operation"
+    t.string   "object"
+    t.string   "object_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "batch_objects", force: true do |t|
     t.integer  "batch_id"

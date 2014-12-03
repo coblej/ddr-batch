@@ -1,6 +1,6 @@
 class CreateBatchObjectDatastreams < ActiveRecord::Migration
   def up
-    unless table_exists?("batch_object_datastreams") do
+    unless table_exists?("batch_object_datastreams")
       create_table "batch_object_datastreams" do |t|
         t.integer  "batch_object_id"
         t.string   "operation"
