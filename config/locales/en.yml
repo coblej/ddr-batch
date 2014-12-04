@@ -1,0 +1,5 @@
+en:
+    batch:
+        object:
+            errors:
+                prefix: "%{identifier} [Database ID: %{id}]:"

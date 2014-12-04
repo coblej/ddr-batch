@@ -32,7 +32,7 @@ module Ddr
       end
   
       def validate
-        @error_prefix = I18n.t('batch.manifest_object.errors.prefix', :identifier => identifier, :id => id)
+        @error_prefix = I18n.t('batch.object.errors.prefix', :identifier => identifier, :id => id)
         errors = []
         errors += validate_model if model
         errors += validate_datastreams if batch_object_datastreams
