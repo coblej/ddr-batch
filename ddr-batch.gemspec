@@ -27,4 +27,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "factory_girl_rails", "~> 4.4"
   s.add_development_dependency "jettywrapper"
   s.add_development_dependency "database_cleaner"
+  s.add_development_dependency "equivalent-xml"
 end

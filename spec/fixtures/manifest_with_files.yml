@@ -1,0 +1,20 @@
+batch:
+    name: Test Batch
+    description: Description of test batch
+basepath: placeholder
+model: TestContent
+admin_policy: test:1
+label: Manifest Label
+checksum:
+    location: spec/fixtures/checksums.xml
+datastreams:
+    - content
+    - descMetadata
+content:
+    extension: .tif
+    location: spec/fixtures/
+objects:
+    - identifier: id001
+      parent:
+        id: id0
+    
