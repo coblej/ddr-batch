@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203221533) do
+ActiveRecord::Schema.define(version: 20141205144531) do
 
   create_table "batch_object_datastreams", force: true do |t|
     t.integer  "batch_object_id"
@@ -87,6 +87,34 @@ ActiveRecord::Schema.define(version: 20141203221533) do
   add_index "events", ["outcome"], name: "index_events_on_outcome"
   add_index "events", ["pid"], name: "index_events_on_pid"
   add_index "events", ["type"], name: "index_events_on_type"
+
+  create_table "ingest_folders", force: true do |t|
+    t.integer  "user_id"
+    t.string   "base_path"
+    t.string   "sub_path"
+    t.string   "admin_policy_pid"
+    t.string   "collection_pid"
+    t.string   "model"
+    t.string   "file_creator"
+    t.string   "checksum_file"
+    t.string   "checksum_type"
+    t.boolean  "add_parents"
+    t.integer  "parent_id_length"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "metadata_files", force: true do |t|
+    t.integer  "user_id"
+    t.string   "profile"
+    t.string   "collection_pid"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "metadata_file_name"
+    t.string   "metadata_content_type"
+    t.integer  "metadata_file_size"
+    t.datetime "metadata_updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

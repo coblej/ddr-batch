@@ -1,0 +1,17 @@
+config:
+    file_model: TestChild
+    target_model: Target
+    target_folder: targets
+    checksum_file:
+        location: /dir/fixity/fedora_ingest/
+        type: SHA-256
+files:
+    included_extensions:
+        - .pdf
+        - .tif
+        - .tiff
+    mount_points:
+        base_folder: /mnt/point/
+    permissions:
+        user_user_key:
+            - base_folder/base_subfolder/
