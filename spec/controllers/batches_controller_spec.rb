@@ -10,16 +10,16 @@ module Ddr
       shared_examples "a delete-able batch" do
         it "should delete the batch and redirect to the index page" do
           delete :destroy, :id => batch
+          expect(response).to redirect_to(Ddr::Batch::Engine.routes.url_helpers.batches_path)
           expect{ Ddr::Batch::Batch.find(batch.id) }.to raise_error(ActiveRecord::RecordNotFound)
-          expect(subject).to redirect_to(batches_path)
         end
       end
   
       shared_examples "a non-delete-able batch" do
         it "should not delete the batch and redirect to the index page" do
           delete :destroy, :id => batch
+          expect(response).to redirect_to(Ddr::Batch::Engine.routes.url_helpers.batches_path)
           expect(Ddr::Batch::Batch.find(batch.id)).to eql(batch)
-          expect(subject).to redirect_to(batches_path)
         end
       end
 
@@ -83,6 +83,7 @@ module Ddr
           batch.reload
         end
         it "should set the status of the batch to QUEUED" do
+          expect(response).to redirect_to(Ddr::Batch::Engine.routes.url_helpers.batches_path)
           expect(batch.status).to eq(Ddr::Batch::Batch::STATUS_QUEUED)
         end
       end

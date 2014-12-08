@@ -22,6 +22,8 @@ Gem::Specification.new do |s|
   s.add_dependency "active-fedora", "~> 7.0"
   s.add_dependency "ddr-models", "~> 1.4.0"
   s.add_dependency "paperclip", "~> 4.2.0"
+  s.add_dependency "resque", "1.25.2"
+  s.add_dependency "resque-pool", "0.3.0"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec-rails", "~> 3.1"

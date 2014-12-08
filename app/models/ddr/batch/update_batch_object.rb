@@ -8,7 +8,7 @@ module Ddr
         errs << "#{@error_prefix} PID required for UPDATE operation" unless pid
         if pid
           if ActiveFedora::Base.exists?(pid)
-            errs << "#{@error_prefix} #{batch.user.user_key} not permitted to edit #{pid}" unless batch.user.can?(:edit, ActiveFedora::Base.find(pid, :cast => true))
+            errs << "#{@error_prefix} #{batch.user.user_key} not permitted to edit #{pid}" unless batch.user.can?(:edit, ActiveFedora::Base.find(pid))
           else
             errs << "#{@error_prefix} PID #{pid} not found in repository" unless ActiveFedora::Base.exists?(pid)
           end

@@ -109,12 +109,20 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.clean
     ActiveFedora::Base.destroy_all
+    FileUtils.copy(File.join(Ddr::Batch::Engine.root.to_s, 'config', 'folder_ingest.yml.sample'),
+                    File.join(Ddr::Batch::Engine.root.to_s, 'spec', 'dummy', 'config', 'folder_ingest.yml'))
   end
 
   config.after(:each) do
     ActiveFedora::Base.destroy_all
+    FileUtils.rm_rf('spec/dummy/public/system')
   end
 
   config.after(:each, type: :feature) { Warden.test_reset! }
+
+  config.after(:suite) do
+    File.delete(File.join(Ddr::Batch::Engine.root.to_s, 'spec', 'dummy', 'config', 'folder_ingest.yml')) if
+      File.exists?(File.join(Ddr::Batch::Engine.root.to_s, 'spec', 'dummy', 'config', 'folder_ingest.yml'))
+    end
 
 end

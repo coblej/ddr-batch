@@ -31,13 +31,13 @@ module Ddr
         else
           flash[:notice] = I18n.t('batch.web.batch_not_deletable', :id => @batch.id, :status => @batch.status)
         end
-        redirect_to action: :index
+        redirect_to ddr_batch.batches_url
       end
   
       def procezz
-        Resque.enqueue(Jobs::BatchProcessorJob, @batch.id, current_user.id)
+        Resque.enqueue(BatchProcessorJob, @batch.id, current_user.id)
         flash[:notice] = I18n.t('batch.web.batch_queued', :id => @batch.id)
-        redirect_to batches_url
+        redirect_to ddr_batch.batches_url
       end
   
       def validate
@@ -50,9 +50,9 @@ module Ddr
         end
         flash[:notice] = "Batch is #{valid ? '' : 'not '}valid"
         if valid && referrer == url_for(action: 'index', only_path: false)
-          redirect_to batches_url
+          redirect_to ddr_batch.batches_url
         else
-          redirect_to batch_url(@batch.id)
+          redirect_to ddr_batch.batch_url(@batch.id)
         end
       end
 
