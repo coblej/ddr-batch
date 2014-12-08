@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "~> 4.1.8"
+  s.add_dependency "devise"
   s.add_dependency "active-fedora", "~> 7.0"
   s.add_dependency "ddr-models", "~> 1.4.0"
   s.add_dependency "paperclip", "~> 4.2.0"

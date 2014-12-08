@@ -1,5 +1,6 @@
 require "ddr/batch/engine"
 require "ddr/models"
+require "devise"
 require "paperclip"
 
 module Ddr

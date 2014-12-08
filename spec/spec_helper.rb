@@ -99,6 +99,13 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 
+  # Devise helpers
+  config.include Devise::TestHelpers, type: :controller
+
+  # Warden helpers
+  config.include Warden::Test::Helpers, type: :feature
+  Warden.test_mode!
+
   config.before(:suite) do
     DatabaseCleaner.clean
     ActiveFedora::Base.destroy_all
@@ -107,5 +114,7 @@ RSpec.configure do |config|
   config.after(:each) do
     ActiveFedora::Base.destroy_all
   end
+
+  config.after(:each, type: :feature) { Warden.test_reset! }
 
 end
